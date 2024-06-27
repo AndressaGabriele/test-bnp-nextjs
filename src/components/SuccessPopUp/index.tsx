@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import styles from './SuccessPopup.module.css';
+import styles from './style.module.css';
 
 type SuccessPopupProps = {
     message: string;

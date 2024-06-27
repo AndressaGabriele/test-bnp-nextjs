@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from '@/styles/modal.module.css';
 import { Modal } from '@/components/Modal';
-import SuccessPopup from '@/components/SuccessPopUp/SuccessPopup';
+import SuccessPopup from '@/components/SuccessPopUp';
 
 export default function Home() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
