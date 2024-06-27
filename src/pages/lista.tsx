@@ -1,5 +1,6 @@
+// Em Lista.tsx
+import styles from '../styles/lista.module.css'
 import { useEffect, useState } from 'react';
-import styles from '@/styles/lista.module.css';
 import { IUser } from '@/types/user';
 
 export default function Lista() {

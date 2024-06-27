@@ -7,7 +7,12 @@
 }
 
 .content {
-	background-color: #ccc;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	color: #074e0f;
+	background-color: #bdc6bf;
 	border-radius: 8px;
 	padding: 1.5rem;
 	width: fit-content;
@@ -16,6 +21,8 @@
 
 .content form {
 	display: flex;
+	align-items: center;
+	justify-content: center;
 	row-gap: 1rem;
 	flex-direction: column;
 }
@@ -26,7 +33,19 @@
 	border: 1px solid #ccc;
 }
 
+.errorName {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	color: #ff0000;
+
+}
+.errorEmail{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	color: #ff0000;
+}
 .content form button {
 	width: 50%;
-	margin-left: auto;
 }

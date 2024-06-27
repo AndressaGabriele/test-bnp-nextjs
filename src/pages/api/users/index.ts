@@ -5,6 +5,8 @@ const users: Array<IUser> = [
     { id: 1, name: 'Usuário 1', email: 'user1@mail.com' },
     { id: 2, name: 'Usuário 2', email: 'user2@mail.com' },
 	{ id: 3, name: 'Usuário 3', email: 'user3@mail.com' },
+	{ id: 4, name: 'Usuário 4', email: 'user4@mail.com' },
+
 
 ];
 
