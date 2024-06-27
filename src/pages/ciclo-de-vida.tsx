@@ -1,79 +1,73 @@
+import { GetServerSideProps } from 'next/types';
 import styles from '@/styles/ciclo-de-vida.module.css';
 import { Counter } from '@/components/Counter';
-import { useState, useRef, useEffect } from 'react';
-import { GetServerSideProps } from 'next/types';
+import { useEffect, useState, useRef } from 'react';
 
 type CicloDeVidaProps = {
-  initialCount: number;
+	initialCount: number;
 };
 
 export default function CicloDeVida({ initialCount }: CicloDeVidaProps) {
-  const [count, setCount] = useState(initialCount); // Gerencia o valor do contador
-  const [showCounter, setShowCounter] = useState(false);
-  const eventListenersRegistered = useRef(false);
+	const [showCounter, setShowCounter] = useState(false);
+	const eventListenersAdded = useRef(false);
 
-  function handleOcultCounterClick() {
-    setShowCounter((prevState) => !prevState);
-  }
+	const handleOcultCounterClick = () => {
+		setShowCounter((prevState) => !prevState);
+	};
 
-  function handleCounterUnmount(): void {
-    // Lógica para desmontar o contador (se necessário)
-  }
+	const handleCounterMount = (event: CustomEventInit) => {
+		console.log('onCounterMount');
+	};
 
-  useEffect(() => {
-    if (!eventListenersRegistered.current) {
-      window.addEventListener('onCounterMount', () => {
-        console.log('onCounterMount');
-      });
+	const handleCounterUnmount = (event: CustomEventInit) => {
+		console.log('onCounterUnmount');
+	};
 
-      window.addEventListener('onCounterUnmount', () => {
-        console.log('onCounterUnmount');
-        handleCounterUnmount?.(); 
-      });
+	const handleCounterUpdate = (event: CustomEventInit) => {
+		console.log('onCounterUpdate');
+	};
 
-      window.addEventListener('onCounterUpdate', (event: CustomEventInit) => {
-        handleCounterUpdate(event.detail); 
-      });
+	useEffect(() => {
+		if (!eventListenersAdded.current) {
+			window.addEventListener('onCounterMount', handleCounterMount);
+			window.addEventListener('onCounterUnmount', handleCounterUnmount);
+			window.addEventListener('onCounterUpdate', handleCounterUpdate);
 
-      eventListenersRegistered.current = true;
-    }
-  }, []);
+			eventListenersAdded.current = true;
+		}
 
-  const handleCounterUpdate = (newCount: number) => {
-    setCount((prevState) => {
-      const updatedCount = newCount >= 10 ? 0 : newCount; 
-      return updatedCount;
-    });
-  };
+		return () => {
+			window.removeEventListener('onCounterMount', handleCounterMount);
+			window.removeEventListener('onCounterUnmount', handleCounterUnmount);
+			window.removeEventListener('onCounterUpdate', handleCounterUpdate);
+		};
+	}, []);
 
-  return (
-    <div className={styles.container}>
-      <div>
-        <button className={styles.button} type="button" onClick={handleOcultCounterClick}>
-          {showCounter ? 'Ocultar contador' : 'Mostrar contador'}
-        </button>
+	return (
+		<div className={styles.container}>
+			<div>
+				<button type="button" onClick={handleOcultCounterClick}>
+					{showCounter ? 'Ocultar contador' : 'Mostrar contador'}
+				</button>
 
-        {showCounter && (
-          <>
-            <h1 className={styles.title}>Exemplo de Ciclo de vida</h1>
+				{showCounter && (
+					<>
+						<h1>Exemplo de Ciclo de vida</h1>
 
-            <div className={styles.content}>
-              <Counter
-                onCounterUpdate={handleCounterUpdate}
-                initialCount={initialCount}
-              />
-            </div>
-          </>
-        )}
-      </div>
-    </div>
-  );
+						<div data-content>
+							<Counter initialCount={initialCount} />
+						</div>
+					</>
+				)}
+			</div>
+		</div>
+	);
 }
 
 export const getServerSideProps: GetServerSideProps<CicloDeVidaProps> = async () => {
-  return {
-    props: {
-      initialCount: 0,
-    },
-  };
+	return {
+		props: {
+			initialCount: 0,
+		},
+	};
 };

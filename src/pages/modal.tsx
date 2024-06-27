@@ -13,7 +13,7 @@ export default function Home() {
         if (validateEmail(email)) {
             setModalIsOpen(false);
             setSuccessMessage('Usuário criado com sucesso ✅');
-            setEmail(''); // Clear email field
+            setEmail('');
         } else {
             setEmailError('Por favor, insira um e-mail válido.');
         }

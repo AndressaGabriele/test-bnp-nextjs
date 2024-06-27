@@ -1,34 +1,45 @@
 import { useEffect, useState } from 'react';
 
 type CounterProps = {
-  initialCount: number;
-  onCounterUpdate: (count: number) => void;
+	initialCount: number;
 };
 
-export const Counter = ({ initialCount, onCounterUpdate }: CounterProps) => {
-  const [count, setCount] = useState(initialCount);
+export function Counter({ initialCount }: CounterProps) {
+	const [count, setCount] = useState(initialCount);
 
-  useEffect(() => {
-    window.dispatchEvent(new CustomEvent('onCounterMount'));
+	// Dispara o evento de montagem
+	useEffect(() => {
+		const mountEvent = new CustomEvent('onCounterMount');
+		window.dispatchEvent(mountEvent);
 
-    return () => {
-      window.dispatchEvent(new CustomEvent('onCounterUnmount'));
-    };
-  }, []);
+		return () => {
+			const unmountEvent = new CustomEvent('onCounterUnmount');
+			window.dispatchEvent(unmountEvent);
+		};
+	}, []);
 
-  useEffect(() => {
-    window.dispatchEvent(new CustomEvent('onCounterUpdate', { detail: count }));
-    onCounterUpdate(count);
-  }, [count]);
+	useEffect(() => {
+		const updateEvent = new CustomEvent('onCounterUpdate', { detail: { count } });
+		window.dispatchEvent(updateEvent);
 
-  const increment = () => {
-    setCount((prevCount) => prevCount + 1);
-  };
+		if (count >= 10) {
+			const unmountEvent = new CustomEvent('onCounterUnmount');
+			window.dispatchEvent(unmountEvent);
+		}
+	}, [count]);
 
-  return (
-    <div>
-      <p>Contador: {count}</p>
-      <button onClick={increment}>Incrementar +2</button>
-    </div>
-  );
-};
+	const increment = () => {
+		setCount(prevCount => prevCount + 1);
+	};
+
+	if (count >= 11) {
+		return null;
+	}
+
+	return (
+		<div>
+			<p>Counter: {count}</p>
+			<button onClick={increment}>Increment</button>
+		</div>
+	);
+}
