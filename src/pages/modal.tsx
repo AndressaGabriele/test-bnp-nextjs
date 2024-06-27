@@ -1,62 +1,82 @@
-/**
- * Modal
- *
- * - O modal fecha ao clicar em qualquer elemento, resolva o problema
- */
-
 import { useState } from 'react';
-
 import styles from '@/styles/modal.module.css';
 import { Modal } from '@/components/Modal';
+import SuccessPopup from '@/components/SuccessPopUp/SuccessPopup';
 
 export default function Home() {
-	const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [email, setEmail] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
 
-	function handleModalConfirm() {
-		setModalIsOpen(false);
-		alert('confirmado');
-	}
+    function handleModalConfirm() {
+        if (validateEmail(email)) {
+            setModalIsOpen(false);
+            setSuccessMessage('Usuário criado com sucesso ✅');
+            setEmail(''); // Clear email field
+        } else {
+            setEmailError('Por favor, insira um e-mail válido.');
+        }
+    }
 
-	function handleModalClose() {
-		setModalIsOpen(false);
-	}
+    function handleModalClose(type: 'click' | 'esc', target: EventTarget | null) {
+        setModalIsOpen(false);
+        setEmail(''); 
+        setEmailError(''); 
+    }
 
-	function renderModalContent() {
-		return (
-			<div data-modal-content className={styles['modal-form']}>
-				<form onSubmit={() => false}>
-					<div>
-						<label htmlFor="input-name">Nome</label>
-						<input type="text" id="input-name" placeholder="Insira um nome" />
-					</div>
+    function validateEmail(email: string): boolean {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+    }
 
-					<div>
-						<label htmlFor="input-name">E-mail</label>
-						<input type="email" id="input-name" placeholder="Insira um e-mail válido" />
-					</div>
-				</form>
-			</div>
-		);
-	}
+    function renderModalContent() {
+        return (
+            <div data-modal-content className={styles['modal-form']}>
+                <form onSubmit={(e) => e.preventDefault()}>
+                    <div>
+                        <label htmlFor="input-name">Nome</label>
+                        <input type="text" id="input-name" placeholder="Insira um nome" />
+                    </div>
 
-	return (
-		<>
-			<main className={styles.container}>
-				<button type="button" onClick={() => setModalIsOpen(true)}>
-					Abrir modal
-				</button>
-			</main>
+                    <div>
+                        <label htmlFor="input-email">E-mail</label>
+                        <input
+                            type="email"
+                            id="input-email"
+                            placeholder="Insira um e-mail válido"
+                            value={email}
+                            onChange={(e) => {
+                                setEmail(e.target.value);
+                                setEmailError('');
+                            }}
+                        />
+                        {emailError && <span className={styles.error}>{emailError}</span>}
+                    </div>
+                </form>
+            </div>
+        );
+    }
 
-			{/* modal */}
-			<Modal
-				isOpen={modalIsOpen}
-				title="Criar novo usuário"
-				onClose={handleModalClose}
-				onConfirm={handleModalConfirm}
-				footer={{ confirmText: 'Criar usuário' }}
-			>
-				{renderModalContent()}
-			</Modal>
-		</>
-	);
+    return (
+        <>
+            <main className={styles.container}>
+                <button type="button" onClick={() => setModalIsOpen(true)}>
+                    Abrir modal
+                </button>
+                {successMessage && <SuccessPopup message={successMessage} onClose={() => setSuccessMessage('')} />}
+            </main>
+
+            {/* modal */}
+            <Modal
+                isOpen={modalIsOpen}
+                title="Criar novo usuário"
+                onClose={handleModalClose}
+                onConfirm={handleModalConfirm}
+                footer={{ confirmText: 'Criar usuário' }}
+            >
+                {renderModalContent()}
+            </Modal>
+        </>
+    );
 }
