@@ -37,8 +37,7 @@ npm run dev
 ├── .prettierrc         # Configuração do Prettier
 ├── next.config.js      # Configuração do Next.js
 └── README.md           # Documentação do projeto
-
-
+-------------- 
 ## Funcionalidades Implementadas
 
 Gerenciamento de Estados: Utilização do Context API para gerenciar o estado global da aplicação.
