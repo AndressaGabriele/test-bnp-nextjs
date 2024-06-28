@@ -39,7 +39,7 @@ export function Counter({ initialCount }: CounterProps) {
 	return (
 		<div>
 			<p>Counter: {count}</p>
-			<button onClick={increment}>Increment</button>
+			<button onClick={increment}>Incrementar +</button>
 		</div>
 	);
 }

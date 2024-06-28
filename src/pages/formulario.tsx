@@ -46,7 +46,7 @@ const Form: React.FC<FormProps> = ({ onUserAdded }) => {
 
 			setTimeout(() => {
 				setErrorMessage(null);
-			}, 5000);
+			}, 3000);
 		}
 	};
 
