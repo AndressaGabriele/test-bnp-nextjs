@@ -39,7 +39,7 @@ npm run dev
 └── README.md           # Documentação do projeto
 
 
-Funcionalidades Implementadas
+## Funcionalidades Implementadas
 
 Gerenciamento de Estados: Utilização do Context API para gerenciar o estado global da aplicação.
 Componentização: Criação de componentes reutilizáveis e bem estruturados.
@@ -65,6 +65,3 @@ Caso tenham dúvidas ou precisem de mais informações, estou à disposição!
 Atenciosamente,
 
 Andressa Santos
-
-
-Agora você pode copiar e colar o texto diretamente em seu arquivo README.md.
