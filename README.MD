@@ -33,8 +33,6 @@ npm run dev
 │   ├── types           # Definições de tipos TypeScript
 │   └── utils           # Utilitários e funções auxiliares
 ├── public              # Arquivos estáticos
-├── .eslintrc.js        # Configuração do ESLint
-├── .prettierrc         # Configuração do Prettier
 ├── next.config.js      # Configuração do Next.js
 └── README.md           # Documentação do projeto
 ```
