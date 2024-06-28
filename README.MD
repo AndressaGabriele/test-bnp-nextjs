@@ -48,9 +48,9 @@ Criação de Context API: Implementação de Context API para compartilhamento d
 
 Para rodar os testes, utilize o comando:
 - npm run test
-- Melhorias Propostas
-- Durante o desenvolvimento, identifiquei algumas áreas que poderiam ser melhoradas:
 
+Melhorias Propostas
+- Durante o desenvolvimento, identifiquei algumas áreas que poderiam ser melhoradas:
 - Performance: Implementação de técnicas de otimização de performance.
 - Acessibilidade: Melhorias na acessibilidade da aplicação.
 
