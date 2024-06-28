@@ -45,9 +45,8 @@ Gerenciamento de Estados: Utilização do Context API para gerenciar o estado gl
 Componentização: Criação de componentes reutilizáveis e bem estruturados.
 Manipulação de API: Integração com API externa para manipulação de dados.
 Gerenciamento de Formulários: Uso do react-hook-form para gerenciamento de formulários e validações.
+
 Criação de Context API: Implementação de Context API para compartilhamento de estado entre componentes.
-Testes
-Os testes foram implementados utilizando Jest e React Testing Library.
 
 Para rodar os testes, utilize o comando:
 - npm run test
