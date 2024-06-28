@@ -37,7 +37,8 @@ npm run dev
 ├── .prettierrc         # Configuração do Prettier
 ├── next.config.js      # Configuração do Next.js
 └── README.md           # Documentação do projeto
--------------- 
+```
+
 ## Funcionalidades Implementadas
 
 Gerenciamento de Estados: Utilização do Context API para gerenciar o estado global da aplicação.
@@ -49,14 +50,13 @@ Testes
 Os testes foram implementados utilizando Jest e React Testing Library.
 
 Para rodar os testes, utilize o comando:
-npm run test
-Melhorias Propostas
-Durante o desenvolvimento, identifiquei algumas áreas que poderiam ser melhoradas:
+- npm run test
+- Melhorias Propostas
+- Durante o desenvolvimento, identifiquei algumas áreas que poderiam ser melhoradas:
 
-Performance: Implementação de técnicas de otimização de performance.
-Acessibilidade: Melhorias na acessibilidade da aplicação.
-UX/UI: Refinamento na interface do usuário para uma melhor experiência.
-Considerações Finais
+- Performance: Implementação de técnicas de otimização de performance.
+- Acessibilidade: Melhorias na acessibilidade da aplicação.
+
 Foi um prazer participar deste processo seletivo e desenvolver este projeto. Acredito que os requisitos foram atendidos e que o projeto demonstra minhas habilidades e conhecimentos em desenvolvimento front-end com Next.js.
 
 Caso tenham dúvidas ou precisem de mais informações, estou à disposição!
